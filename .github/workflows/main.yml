@@ -42,7 +42,7 @@ jobs:
 							eval "$(ssh-agent -s)"
 							ssh-add ~/.ssh/senpro-ssh-3
 							echo "Cek folder project";
-							[ ! -d "/home/seniorproject-rabu/senpro/456360/modul01/senpro-github-action/" ] &&
+							[ ! -d "/home/seniorproject-rabu/senpro/456360/modul01/senpro-github-action/" &&
 								{
 									echo "Repository belum di-clone. Cloning...";
 									mkdir -p ~/senpro/456360/modul01;
@@ -62,5 +62,6 @@ jobs:
 									npm install;
 									npm run build;
 								}
+							]
 							
 							
