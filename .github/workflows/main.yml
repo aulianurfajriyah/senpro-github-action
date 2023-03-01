@@ -31,9 +31,8 @@ jobs:
 					node-version: [16.x]
 
 			steps:
-				- uses: actions/checkout@v2
-				- name: Testing Build pre-Deploy
-					uses: actions/setup-node@v2
+				- name: Build app on VM
+					uses: appleboy/ssh-action@master
 					with:
 						host: ${{ secrets.HOST }}
 						username: ${{ secrets.USERNAME }}
@@ -43,12 +42,12 @@ jobs:
 							eval "$(ssh-agent -s)"
 							ssh-add ~/.ssh/senpro-ssh-3
 							echo "Cek folder project";
-							[ ! -d "/home/seniorproject-rabu/senpro/456360/modul01/senpro-github-action/" &&
+							[ ! -d "/home/seniorproject-rabu/senpro/456360/modul01/senpro-github-action/" ] && 
 								{
 									echo "Repository belum di-clone. Cloning...";
 									mkdir -p ~/senpro/456360/modul01;
 									cd ~/senpro/456360/modul01;
-									git clone https://github.com/aulianurfajriyah/senpro-github-action.git;
+									git clone git@github.com:aulianurfajriyah/senpro-github-action.git;
 									cd ~/senpro/456360/modul01/senpro-github-action;
 									echo "Install Package dan Build Project";
 									npm install;
@@ -63,6 +62,6 @@ jobs:
 									npm install;
 									npm run build;
 								}
-							]
+	
 							
 							
